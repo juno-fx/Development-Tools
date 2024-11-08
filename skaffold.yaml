@@ -1,0 +1,23 @@
+apiVersion: skaffold/v3
+kind: Config
+build:
+  local:
+    push: false
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - image: my-image
+      docker:
+        dockerfile: Dockerfile
+        target: dev
+profiles:
+  - name: test
+    build:
+      artifacts:
+        - image: my-image
+          docker:
+            target: prod
+
+manifests:
+  rawYaml:
+    - k8s/*
