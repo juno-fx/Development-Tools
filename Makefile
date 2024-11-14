@@ -24,8 +24,8 @@ lint:
 format:
 	@ $(MAKE) -f .tools/dev.Makefile format $(ENV) --no-print-directory
 
-check-format:
-	@ $(MAKE) -f .tools/dev.Makefile check-format $(ENV) --no-print-directory
+check:
+	@ $(MAKE) -f .tools/dev.Makefile check $(ENV) --no-print-directory
 
 # Environment targets
 dev:
