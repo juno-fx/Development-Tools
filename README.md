@@ -15,6 +15,8 @@ development process. This provides a consistent development experience across al
 decreases the time it takes to onboard new developers and increases the overall productivity of
 the development team.
 
+<br/>
+
 ## Criteria
 
 - [x] **Consistency**: Provide a consistent development experience across all repositories.
@@ -22,13 +24,19 @@ the development team.
 - [x] **Onboarding**: Decrease the time it takes to onboard new developers.
 - [x] **CI/CD**: Must be used in a CI/CD pipeline, enabling all steps to be run locally by the developer.
 
+<br/>
+
 ## Required Tools
 
 - [Devbox](https://www.jetify.com/docs/devbox/installing_devbox/)
 - [Docker](https://docs.docker.com/engine/install/)
 - [Make](https://www.gnu.org/software/make/)
 
+<br/>
+
 ## Repository Setup
+
+<br/>
 
 #### Update gitignore
 
@@ -40,6 +48,8 @@ committed to the repository.
 .tools/
 ```
 
+<br/>
+
 #### Initial Setup
 
 We provide an easy way to initially provision a new repository with the development tools using
@@ -48,6 +58,8 @@ an installation script.
 ```shell
 curl https://raw.githubusercontent.com/juno-innovations/development-tools/main/install.sh | bash
 ```
+
+<br/>
 
 #### Update Existing Setup
 
@@ -60,6 +72,8 @@ make update-tools
 ```
 
 This will download and setup the latest version of the development tools.
+
+<br/>
 
 ## Configuration
 
