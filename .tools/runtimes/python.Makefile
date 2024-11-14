@@ -21,5 +21,5 @@ format:
 	@ ruff check src --fix --preview
 
 check:
-	@ ruff format src --preview
+	@ ruff format src --preview --check
 	@ ruff check src --preview
