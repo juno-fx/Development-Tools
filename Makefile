@@ -36,3 +36,6 @@ down:
 
 dependencies:
 	@ echo " >> Add cluster dependencies here << "
+
+test:
+	@ $(MAKE) -f .tools/cluster.Makefile test $(ENV) --no-print-directory

@@ -15,12 +15,12 @@ down:
 
 # Environments
 setup_test_env: cluster
-	# Build the required artifacts and export them to the
-	# build file for use in the next steps
-	@ skaffold build --file-output build.json -p test
-
-	# Force load images into the cluster
-	@ skaffold deploy -a build.json --load-images=true -p test
+	@ skaffold build --file-output build.jso
+	@ skaffold deploy -a build.json --load-images=true
 
 dev: cluster
 	@ skaffold dev -w skaffold.yaml
+
+test: setup_test_env
+	@ skaffold verify -a build.json || ($(MAKE) down && exit 1)
+	@ $(MAKE) down
