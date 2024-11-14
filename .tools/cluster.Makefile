@@ -15,7 +15,7 @@ down:
 
 # Environments
 setup_test_env: cluster
-	@ skaffold build --file-output build.jso
+	@ skaffold build --file-output build.json
 	@ skaffold deploy -a build.json --load-images=true
 
 dev: cluster
