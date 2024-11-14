@@ -12,5 +12,5 @@ lint:
 format:
 	@ yarn run prettier --write src
 
-check-format:
+check:
 	@ yarn run prettier src

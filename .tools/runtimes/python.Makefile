@@ -20,6 +20,6 @@ format:
 	@ ruff format src --preview
 	@ ruff check src --fix --preview
 
-check-format:
+check:
 	@ ruff format src --preview
 	@ ruff check src --preview

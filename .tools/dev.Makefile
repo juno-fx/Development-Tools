@@ -37,10 +37,10 @@ ifeq ($(NODE), true)
 	@ $(MAKE) $(NODE_MAKE) format --no-print-directory
 endif
 
-check-format:
+check:
 ifeq ($(PYTHON), true)
-	@ $(MAKE) $(PY_MAKE) check-format --no-print-directory
+	@ $(MAKE) $(PY_MAKE) check --no-print-directory
 endif
 ifeq ($(NODE), true)
-	@ $(MAKE) $(NODE_MAKE) check-format --no-print-directory
+	@ $(MAKE) $(NODE_MAKE) check --no-print-directory
 endif
