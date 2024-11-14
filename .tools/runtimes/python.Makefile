@@ -14,11 +14,10 @@ install:
 	@ $(UV) -r dev-requirements.txt
 
 lint:
-	@ ruff check src --preview
+	@ ruff check src --fix --preview
 
 format:
 	@ ruff format src --preview
-	@ ruff check src --fix --preview
 
 check:
 	@ ruff format src --preview --check
