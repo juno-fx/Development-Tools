@@ -20,5 +20,8 @@ format:
 	@ ruff format src --preview
 
 check:
+	@ echo " >> Running Format Check... << "
 	@ ruff format src --preview --check
+	@ echo
+	@ echo " >> Running Lint Check... << "
 	@ ruff check src --preview
