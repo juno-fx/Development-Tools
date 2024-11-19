@@ -1,3 +1,5 @@
+.PHONY: cluster down setup_test_env dev test
+
 # constants
 PROJECT := $(shell basename $(CURDIR))
 

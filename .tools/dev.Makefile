@@ -1,3 +1,5 @@
+.PHONY: env install lint format check
+
 # constants
 PROJECT := $(shell basename $(CURDIR))
 

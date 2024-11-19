@@ -1,3 +1,5 @@
+.PHONY: env install lint format check
+
 # python env handler
 VENV := venv/bin
 UV := $(VENV)/uv pip install -p $(VENV)/python

@@ -1,3 +1,5 @@
+.PHONY: env install lint format check
+
 # Development targets
 env:
 	@ echo " >> Setting up Node << "
