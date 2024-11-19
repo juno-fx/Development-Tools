@@ -1,11 +1,16 @@
-.PHONY: env install lint format check
+.PHONY: install lint format check
+
+# shell
+SHELL := /bin/bash
 
 # python env handler
 VENV := venv/bin
 UV := $(VENV)/uv pip install -p $(VENV)/python
 
 # Development targets
-env:
+env: venv/bin/activate
+
+venv/bin/activate:
 	@ echo " >> Setting up Python << "
 	@ python -m venv venv > /dev/null
 	@ $(VENV)/pip install uv > /dev/null

@@ -19,31 +19,34 @@ update-tools:
 	@ rm -rf Development-Tools
 	@ echo " >> Tools Updated << "
 
+.tools/cluster.Makefile:
+	@ $(MAKE) update-tools
+
+.tools/dev.Makefile:
+	@ $(MAKE) update-tools
+
 # Development targets
-install: .tools/cluster.Makefile
+install: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile install $(ENV) --no-print-directory
 
-lint: .tools/cluster.Makefile
+lint: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile lint $(ENV) --no-print-directory
 
-format: .tools/cluster.Makefile
+format: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile format $(ENV) --no-print-directory
 
-check: .tools/cluster.Makefile
+check: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile check $(ENV) --no-print-directory
 
 # Environment targets
 dev: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile dev --no-print-directory
 
-down:
+down: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile down --no-print-directory
 
-dependencies:
+dependencies: .tools/cluster.Makefile
 	@ echo " >> Add cluster dependencies here << "
-
-.tools/cluster.Makefile:
-	@ $(MAKE) update-tools
 
 test: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile test $(ENV) --no-print-directory

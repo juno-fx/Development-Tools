@@ -1,5 +1,8 @@
 .PHONY: env install lint format check
 
+# shell
+SHELL := /bin/bash
+
 # constants
 PROJECT := $(shell basename $(CURDIR))
 
