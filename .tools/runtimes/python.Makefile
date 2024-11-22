@@ -9,9 +9,9 @@ VENV := $(VENV_NAME)/bin
 UV := $(VENV)/uv pip install -p $(VENV)/python
 
 # Development targets
-env: venv/bin/activate
+env: $(VENV)/activate
 
-venv/bin/activate:
+$(VENV)/activate:
 	@ echo " >> Setting up Python << "
 	@ python -m $(VENV_NAME) $(VENV_NAME) > /dev/null
 	@ $(VENV)/pip install uv > /dev/null
