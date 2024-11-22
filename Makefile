@@ -1,3 +1,8 @@
+.PHONY: update-tools install lint check format dev dependencies down test
+
+# shell
+SHELL := /bin/bash
+
 # runtimes
 PYTHON := true
 NODE := true
@@ -14,28 +19,34 @@ update-tools:
 	@ rm -rf Development-Tools
 	@ echo " >> Tools Updated << "
 
+.tools/cluster.Makefile:
+	@ $(MAKE) update-tools
+
+.tools/dev.Makefile:
+	@ $(MAKE) update-tools
+
 # Development targets
-install:
+install: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile install $(ENV) --no-print-directory
 
-lint:
+lint: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile lint $(ENV) --no-print-directory
 
-format:
+format: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile format $(ENV) --no-print-directory
 
-check:
+check: .tools/dev.Makefile
 	@ $(MAKE) -f .tools/dev.Makefile check $(ENV) --no-print-directory
 
 # Environment targets
-dev:
+dev: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile dev --no-print-directory
 
-down:
+down: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile down --no-print-directory
 
-dependencies:
+dependencies: .tools/cluster.Makefile
 	@ echo " >> Add cluster dependencies here << "
 
-test:
+test: .tools/cluster.Makefile
 	@ $(MAKE) -f .tools/cluster.Makefile test $(ENV) --no-print-directory

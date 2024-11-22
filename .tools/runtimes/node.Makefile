@@ -1,6 +1,11 @@
+.PHONY: env install lint format check
+
+# shell
+SHELL := /bin/bash
+
 # Development targets
 env:
-	@ echo " >> Setting up Node << "
+	@ echo " >> Devbox Handles Node << "
 
 install:
 	@ echo " >> Running Node Install... << "
