@@ -4,7 +4,8 @@
 SHELL := /bin/bash
 
 # python env handler
-VENV := venv/bin
+VENV_NAME := venv
+VENV := $(VENV_NAME)/bin
 UV := $(VENV)/uv pip install -p $(VENV)/python
 
 # Development targets
@@ -12,7 +13,7 @@ env: venv/bin/activate
 
 venv/bin/activate:
 	@ echo " >> Setting up Python << "
-	@ python -m venv venv > /dev/null
+	@ python -m $(VENV_NAME) $(VENV_NAME) > /dev/null
 	@ $(VENV)/pip install uv > /dev/null
 
 install:
