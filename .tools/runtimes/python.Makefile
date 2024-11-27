@@ -13,7 +13,7 @@ env: $(VENV)/uv
 
 $(VENV)/uv:
 	@ echo " >> Setting up Python << "
-	@ python -m $(VENV_NAME) $(VENV_NAME) > /dev/null
+	@ .devbox/nix/profile/default/bin/python -m $(VENV_NAME) $(VENV_NAME) > /dev/null
 	@ $(VENV)/pip install uv > /dev/null
 
 install:
