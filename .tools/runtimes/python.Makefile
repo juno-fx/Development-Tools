@@ -22,14 +22,14 @@ install:
 	@ $(UV) -r dev-requirements.txt
 
 lint:
-	@ ruff check src --fix --preview
+	@ $(VENV)/ruff check src --fix --preview
 
 format:
-	@ ruff format src --preview
+	@ $(VENV)/ruff format src --preview
 
 check:
 	@ echo " >> Running Format Check... << "
-	@ ruff format src --preview --check
+	@ $(VENV)/ruff format src --preview --check
 	@ echo
 	@ echo " >> Running Lint Check... << "
-	@ ruff check src --preview
+	@ $(VENV)/ruff check src --preview
