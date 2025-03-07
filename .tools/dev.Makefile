@@ -17,6 +17,9 @@ env:
 ifeq ($(PYTHON), true)
 	@ $(MAKE) $(PY_MAKE) env --no-print-directory
 endif
+ifeq ($(NODE), true)
+	@ $(MAKE) $(NODE_MAKE) env --no-print-directory
+endif
 
 install: env
 ifeq ($(PYTHON), true)

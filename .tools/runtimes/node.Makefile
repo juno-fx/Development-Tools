@@ -6,17 +6,17 @@ SHELL := /bin/bash
 # Development targets
 env:
 	@ echo " >> Setting Up Node << "
-	@ which pnpm || (devbox add pnpm && refresh)
+	@ which pnpm > /dev/null || devbox add pnpm
 
 install:
 	@ echo " >> Running Node Install... << "
-	@ yarn install --dev
+	@ pnpm install --dev
 
 lint:
-	@ yarn run prettier -c src
+	@ pnpm run prettier -c src
 
 format:
-	@ yarn run prettier --write src
+	@ pnpm run prettier --write src
 
 check:
-	@ yarn run prettier src
+	@ pnpm run prettier src
