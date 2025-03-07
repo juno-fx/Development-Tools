@@ -13,10 +13,10 @@ install:
 	@ pnpm install
 
 lint:
-	@ pnpm run prettier -c src
+	@ yarn run prettier -c src
 
 format:
-	@ pnpm run prettier --write src
+	@ yarn run prettier --write src
 
 check:
-	@ pnpm run prettier src
+	@ yarn run prettier src
