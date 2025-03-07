@@ -10,7 +10,7 @@ env:
 
 install:
 	@ echo " >> Running Node Install... << "
-	@ pnpm install --dev
+	@ pnpm install
 
 lint:
 	@ pnpm run prettier -c src
