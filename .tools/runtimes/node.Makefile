@@ -14,9 +14,10 @@ install:
 
 lint:
 	@ yarn run prettier -c src
+	@ yarn next lint
 
 format:
 	@ yarn run prettier --write src
+	@ yarn next lint --fix
 
-check:
-	@ yarn run prettier src
+check: lint format
