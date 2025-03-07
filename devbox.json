@@ -8,11 +8,10 @@
     "gnumake@latest",
     "nodejs_18@latest",
     "skaffold@latest",
-    "python312@latest",
-    "yarn@latest"
+    "python312@latest"
   ],
   "env": {
-    "VENV_DIR": "venv",
+    "VENV_DIR":  "venv",
     "UV_PYTHON": "venv/bin/python"
   },
   "shell": {
