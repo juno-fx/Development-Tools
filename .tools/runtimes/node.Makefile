@@ -5,7 +5,8 @@ SHELL := /bin/bash
 
 # Development targets
 env:
-	@ echo " >> Devbox Handles Node << "
+	@ echo " >> Setting Up Node << "
+	@ which pnpm || (devbox add pnpm && refresh)
 
 install:
 	@ echo " >> Running Node Install... << "
