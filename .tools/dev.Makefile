@@ -4,7 +4,9 @@
 SHELL := /bin/bash
 
 # constants
-PROJECT := $(shell basename $(CURDIR))
+RANDOM_FILE := .random_id
+RANDOM_ID := $(shell if [ -f $(RANDOM_FILE) ]; then cat $(RANDOM_FILE); else str=$$(tr -dc 'a-z' </dev/urandom | head -c6); echo $$str > $(RANDOM_FILE); echo $$str; fi)
+PROJECT := $(shell basename $(CURDIR) | tr '[:upper:]' '[:lower:]')-$(RANDOM_ID)
 
 # runtimes
 PY_MAKE := -f ".tools/runtimes/python.Makefile"

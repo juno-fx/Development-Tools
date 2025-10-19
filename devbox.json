@@ -9,17 +9,20 @@
     "nodejs_18@latest",
     "skaffold@latest",
     "python312@latest",
-    "pnpm@latest"
+    "pnpm@latest",
+    "go@latest",
+    "vcluster@latest",
+    "kaniko@latest",
   ],
   "env": {
     "VENV_DIR":  "venv",
-    "UV_PYTHON": "venv/bin/python"
+    "UV_PYTHON": "venv/bin/python",
   },
   "shell": {
-    "init_hook": [
-      "make update-tools",
-      "source venv/bin/activate",
-      "make install"
-    ]
-  }
+    //    "init_hook": [
+    //      "make update-tools",
+    //      "source venv/bin/activate",
+    //      "make install"
+    //    ]
+  },
 }

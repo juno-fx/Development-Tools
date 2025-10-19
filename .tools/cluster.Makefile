@@ -4,19 +4,26 @@
 SHELL := /bin/bash
 
 # constants
-PROJECT := $(shell basename $(CURDIR))
+IN_CLUSTER := $(wildcard /var/run/secrets/kubernetes.io)
 
 # Cluster ops
 cluster:
-	@ kind get clusters | grep $(PROJECT) \
- 		&& echo "Cluster already exists" \
- 		|| kind create cluster --name $(PROJECT) --config .kind.yaml
-	@ echo " >> Cluster created << "
-	@ echo " >> Setting up Cluster Dependencies... << "
-	@ $(MAKE) -f $(CURDIR)/Makefile dependencies --no-print-directory
+ifeq ($(IN_CLUSTER),)
+	@ echo "Using KinD..."
+	@ $(MAKE) -f $(CURDIR)/.tools/cluster/kind.Makefile cluster --no-print-directory
+else
+	@ echo "Using vCluster..."
+	@ $(MAKE) -f $(CURDIR)/.tools/cluster/vcluster.Makefile cluster --no-print-directory
+endif
 
 down:
-	@ kind delete cluster --name $(PROJECT)
+ifeq ($(IN_CLUSTER),)
+	@ echo "Using KinD..."
+	$(MAKE) -f $(CURDIR)/.tools/cluster/kind.Makefile down --no-print-directory
+else
+	@ echo "Using vCluster..."
+	$(MAKE) -f $(CURDIR)/.tools/cluster/vcluster.Makefile down --no-print-directory
+endif
 
 # Environments
 setup_test_env: cluster

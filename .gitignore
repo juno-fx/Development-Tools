@@ -1,2 +1,4 @@
 .devbox
 *.lock
+pnpm-lock.yaml
+.random_id
