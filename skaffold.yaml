@@ -5,10 +5,9 @@ build:
   tagPolicy:
     sha256: {}
   artifacts:
-    - image: my-image
+    - image: junoinnovations/artifacts
       kaniko:
         dockerfile: Dockerfile
-        target: dev
 
 manifests:
   rawYaml:
