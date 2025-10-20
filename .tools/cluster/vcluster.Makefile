@@ -17,7 +17,7 @@ VCLUSTER := $(CLEAN_ENV) ./.devbox/nix/profile/default/bin/vcluster
 
 # Cluster ops
 cluster:
-	@ bash -c '$(VCLUSTER) create $(PROJECT) --namespace $(PROJECT)'
+	@ bash -c '$(VCLUSTER) create $(PROJECT) --namespace $(PROJECT) --upgrade'
 	@ echo " >> Cluster created << "
 	@ echo " >> Setting up Cluster Dependencies... << "
 	@ $(MAKE) -f $(CURDIR)/Makefile dependencies --no-print-directory

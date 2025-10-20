@@ -1,1 +1,3 @@
-FROM scratch
+FROM ubuntu
+
+CMD ["sleep", "infinity"]

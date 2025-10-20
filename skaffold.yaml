@@ -1,13 +1,32 @@
 apiVersion: skaffold/v4beta13
 kind: Config
 build:
-  cluster: {}
+  cluster:
+    dockerConfig:
+      path: ~/.docker/config.json
   tagPolicy:
-    sha256: {}
+    gitCommit:
+      prefix: "dev-build-"
   artifacts:
-    - image: junoinnovations/artifacts
+    - image: junoinnovations/artifact
       kaniko:
         dockerfile: Dockerfile
+        randomDockerConfigSecret: true
+    - image: junoinnovations/test-artifact
+      kaniko:
+        dockerfile: Dockerfile
+        randomDockerConfigSecret: true
+
+verify:
+  # run integration tests
+  - name: test-artifact
+    timeout: 500
+    container:
+      image: junoinnovations/test-artifact
+      name: kuiper-test
+    # target run for in the cluster
+    executionMode:
+      kubernetesCluster: {}
 
 manifests:
   rawYaml:

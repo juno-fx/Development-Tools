@@ -16,6 +16,9 @@ else
 	@ $(MAKE) -f $(CURDIR)/.tools/cluster/vcluster.Makefile cluster --no-print-directory
 endif
 
+clean-secret:
+	@ kubectl delete secret/docker-cfg --ignore-not-found
+
 down:
 ifeq ($(IN_CLUSTER),)
 	@ echo "Using KinD..."
@@ -26,11 +29,11 @@ else
 endif
 
 # Environments
-setup_test_env: cluster
+setup_test_env: cluster clean-secret
 	@ skaffold build --file-output build.json
 	@ skaffold deploy -a build.json --load-images=true
 
-dev: cluster
+dev: cluster clean-secret
 	@ skaffold dev -w skaffold.yaml
 
 test: setup_test_env
