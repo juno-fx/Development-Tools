@@ -1,22 +1,28 @@
-.PHONY: cluster down setup_test_env dev test
+.PHONY: cluster down setup_test_env dev test kind-config
 
 # shell
 SHELL := /bin/bash
 
 # constants
 PROJECT := $(shell basename $(CURDIR))
+PROJECT_LOWER := $(shell echo "$(PROJECT)" | tr '[:upper:]' '[:lower:]')
+MAKEFILE_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+
+
+kind-config:
+	@ bash .tools/patch-kind-config.sh .kind.yaml
 
 # Cluster ops
-cluster:
-	@ kind get clusters | grep $(PROJECT) \
+cluster: kind-config
+	@ kind get clusters | grep $(PROJECT_LOWER) \
  		&& echo "Cluster already exists" \
- 		|| kind create cluster --name $(PROJECT) --config .kind.yaml
+ 		|| kind create cluster --name $(PROJECT_LOWER) --config .kind.yaml.patched
 	@ echo " >> Cluster created << "
 	@ echo " >> Setting up Cluster Dependencies... << "
 	@ $(MAKE) -f $(CURDIR)/Makefile dependencies --no-print-directory
 
 down:
-	@ kind delete cluster --name $(PROJECT)
+	@ kind delete cluster --name $(PROJECT_LOWER)
 
 # Environments
 setup_test_env: cluster

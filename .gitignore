@@ -1,2 +1,4 @@
 .devbox
 *.lock
+.kind.yaml.patched
+pnpm-lock.yaml
