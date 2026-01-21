@@ -4,7 +4,7 @@ set -euo pipefail
 
 if [[ -n "${IN_CI:-}" ]]; then
     CHANGED=0
-    for FILE in .kind.yaml skaffold.yaml; do
+    for FILE in .kind.yaml .kind.yaml.patched skaffold.yaml; do
       [[ -f "$FILE" ]] || continue
 
       # Make a backup to detect changes
