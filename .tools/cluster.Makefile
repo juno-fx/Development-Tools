@@ -32,9 +32,11 @@ setup_test_env: cluster
 	@ skaffold build --file-output build.json
 	@ skaffold deploy -a build.json --load-images=true
 
-dev: host-ports cluster
+dev: cluster
+	@ [ -n "$$IN_CI" ] && bash .tools/patch-host-ports.sh
 	@ skaffold dev -w skaffold.yaml
 
-test: host-ports setup_test_env
+test: setup_test_env
+	@ [ -n "$$IN_CI" ] && bash .tools/patch-host-ports.sh
 	@ skaffold verify -a build.json || ($(MAKE) down && exit 1)
 	@ $(MAKE) down
