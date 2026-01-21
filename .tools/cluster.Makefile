@@ -12,6 +12,9 @@ MAKEFILE_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 kind-config:
 	@ bash .tools/patch-kind-config.sh .kind.yaml
 
+host-ports:
+	@ [ -n "$$IN_CI" ] && bash .tools/patch-host-ports.sh
+
 # Cluster ops
 cluster: kind-config
 	@ kind get clusters | grep $(PROJECT_LOWER) \
@@ -29,9 +32,9 @@ setup_test_env: cluster
 	@ skaffold build --file-output build.json
 	@ skaffold deploy -a build.json --load-images=true
 
-dev: cluster
+dev: host-ports cluster
 	@ skaffold dev -w skaffold.yaml
 
-test: setup_test_env
+test: host-ports setup_test_env
 	@ skaffold verify -a build.json || ($(MAKE) down && exit 1)
 	@ $(MAKE) down
