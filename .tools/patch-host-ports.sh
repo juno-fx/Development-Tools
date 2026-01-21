@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+echo ">> patch-host-ports: checking for reserved host ports in kind and skaffold configs"
+
 if [[ -n "${IN_CI:-}" ]]; then
     CHANGED=0
     for FILE in .kind.yaml .kind.yaml.patched skaffold.yaml; do
