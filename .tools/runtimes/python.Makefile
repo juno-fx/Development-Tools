@@ -18,8 +18,20 @@ $(VENV)/uv:
 
 install:
 	@ echo " >> Running Python Install... << "
-	@ $(UV) -r requirements.txt
-	@ $(UV) -r dev-requirements.txt
+	@ if [ -f requirements.lock ]; then \
+	    echo "Installing from requirements.lock..."; \
+	    $(UV) -r requirements.lock; \
+    else \
+      echo "requirements.lock not found, installing from requirements.txt..."; \
+      $(UV) -r requirements.txt; \
+    fi;
+	@ if [ -f dev-requirements.lock ]; then \
+	    echo "Installing from dev-requirements.lock..."; \
+	    $(UV) -r dev-requirements.lock; \
+    else \
+      echo "dev-requirements.lock not found, installing from dev-requirements.txt..."; \
+      $(UV) -r dev-requirements.txt; \
+    fi
 
 lint:
 	@ $(VENV)/ruff check src --fix --preview
