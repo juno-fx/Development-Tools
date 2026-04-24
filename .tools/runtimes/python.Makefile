@@ -37,7 +37,7 @@ lint:
 	@ $(VENV)/ruff check src --fix --preview
 
 format:
-	@ $(VENV)/ruff format src --preview
+	@  [ -d tests ] && $(VENV)/ruff format src tests || $(VENV)/ruff format src
 
 check:
 	@ echo " >> Running Format Check... << "
